@@ -1,0 +1,48 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Ignorar la carpeta build
+/build/
+
+# Ignorar archivos de salida de compilación
+*.o
+*.obj
+*.exe
+*.out
+*.log
+*.app
+
+# Ignorar archivos de depuración
+*.dSYM/
+*.pdb
+*.ilk
+
+# Ignorar archivos de CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CMakeScripts
+Testing
+.cache

@@ -1,0 +1,20 @@
+CompileFlags:
+  Add: [-std=c++20]
+
+Diagnostics:
+  MissingIncludes: None
+  UnusedIncludes: None
+Index:
+  StandardLibrary: Yes
+  Background: Yes
+Completion:
+  AllScopes: Yes
+InlayHints:
+  Designators: Yes
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+  BlockEnd: Yes
+  TypeNameLimit: 0
+Hover:
+  ShowAKA: Yes

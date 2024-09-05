@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "vadimcn.vscode-lldb",
+    "ms-vscode.cpptools",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "twxs.cmake",
+    "ms-vscode.cmake-tools",
+    "esbenp.prettier-vscode",
+    "xaver.clang-format",
+    "shardulm94.trailing-spaces",
+    "davidanson.vscode-markdownlint"
+  ]
+}

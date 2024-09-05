@@ -1,0 +1,54 @@
+//
+// Configuraciones para el repositorio
+//
+{
+    // Opciones de VSCode
+    "editor.wordWrap": "on",
+    "files.encoding": "utf8",
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+
+    // Extensión: xaver.clang-format y llvm-vs-code-extensions.vscode-clangd
+    // Asegura que clang-format se utilice para formatear archivos C++
+    // Asegura que VSCode no utilice el servidor de lenguaje integrado de C++ para el formateo, sino el de clangd
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnSave": false,
+    "[cpp]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    "[c]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+
+    // Desactiva el motor IntelliSense incorporado, ya que entra en conflicto con clangd
+    "C_Cpp.intelliSenseEngine": "disabled",
+
+    // Extensión: llvm-vs-code-extensions.vscode-clangd
+    // Descripción: Autocompletado, navegación e información para C/C++
+    "clangd.onConfigChanged": "restart",
+    "clangd.arguments": [
+        "--clang-tidy",                    // Habilitar diagnósticos adicionales
+        "--log=error",
+        "--enable-config",
+        "--completion-style=detailed",    // Estilo detallado de autocompletado
+        "--header-insertion=never",        // Evitar la inserción automática de headers
+        "--compile-commands-dir=${workspaceFolder}/build" // Ajustar la ruta según sea necesario
+    ],
+
+    // Opcional: especificar estándares de C++, rutas de inclusión, etc.
+    // Usar C++17 o C++20 según tus necesidades
+    "C_Cpp.default.cppStandard": "c++20",
+
+    // Extensión: vadimcn.vscode-lldb
+    // Descripción: Un depurador nativo impulsado por LLDB. Depurar C++, Rust y otros lenguajes compilados.
+    "lldb.verboseLogging": false,
+
+    // Extensión: shardulm94.trailing-spaces
+    // Descripción: Resaltar espacios finales y eliminarlos rápidamente.
+    "trailing-spaces.trimOnSave": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
