@@ -27,7 +27,7 @@ Utilizo CLANG 17 y C++20 como el estándar por defecto. He configurado este repo
 ### Requisitos Previos
 
 - **VSCode**: Asegúrate de tener instalado [VSCode](https://code.visualstudio.com/download) en tu sistema.
-- **Extensiones de VSCode**: Instalo las extensiones del fichero [extensions.json](./vscode/extensions.json):
+- **Extensiones de VSCode**: Instalo las extensiones del fichero [extensions.json](./.vscode/extensions.json):
 
 ### Clonar
 
@@ -49,9 +49,9 @@ git clone https://github.com/LuisPalacios/git-repo-eol-analyzer.git
 
 #### Windows 11 - CLang/CMake
 
-- Descarga e instala CLANG 17 desde el [sistio oficial (LLVM 64bits)](https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.1/LLVM-17.0.1-win64.exe), o utilizando un gestor de paquetes como [Chocolatey](https://chocolatey.org/).
-- Instala CMake desde el [sitio oficial](https://cmake.org/download/), por ejemplo el *Windows x64 Installer*, o usando Chocolatey: `choco install cmake`.
-- Instalo Ninja (Generador) desde [repositorio oficial](https://github.com/ninja-build/ninja/releases) y lo guardo en un diretorio que tengo en el PATH
+- Descargo e instalo ***CLANG 17.0.1*** desde el sitio de [Releases oficial](https://github.com/llvm/llvm-project/releases). [link directo a LLVM 64bits 17.0.1 para Windows)](https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.1/LLVM-17.0.1-win64.exe).
+- Instalo CMake desde el [sitio oficial](https://cmake.org/download/), me bajo el *Windows x64 Installer*
+- Instalo Ninja (Generador) desde [su repositorio oficial](https://github.com/ninja-build/ninja/releases) y lo guardo en un diretorio que tengo en el PATH
 
 #### MacOS - CLang/CMake
 
@@ -66,8 +66,29 @@ xcode-select --install
 ```bash
 brew update
 brew upgrade
+brew install llvm@17
 brew install cmake
 brew install clang-format
+```
+
+Compruebo con `brew info llvm@17` dónde ha instalado:
+
+Para usar el libc++ que trae bundled, debo añadir lo siguiente al LDFLAGS:
+```shell
+LDFLAGS="-L/opt/homebrew/opt/llvm@17/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm@17/lib/c++"
+```
+
+Para usar llvm@17 en vez del llvm de MacOS, lo antepongo en el PATH
+
+```shell
+  echo 'export PATH="/opt/homebrew/opt/llvm@17/bin:$PATH"' >> ~/.zshrc
+```
+
+Para que los compiladores lo encuentren:
+
+```shell
+  export LDFLAGS="-L/opt/homebrew/opt/llvm@17/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm@17/include"
 ```
 
 #### Linux - CLang/CMake
