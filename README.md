@@ -71,25 +71,7 @@ brew install cmake
 brew install clang-format
 ```
 
-Compruebo con `brew info llvm@17` dónde ha instalado:
-
-Para usar el libc++ que trae bundled, debo añadir lo siguiente al LDFLAGS:
-```shell
-LDFLAGS="-L/opt/homebrew/opt/llvm@17/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm@17/lib/c++"
-```
-
-Para usar llvm@17 en vez del llvm de MacOS, lo antepongo en el PATH
-
-```shell
-  echo 'export PATH="/opt/homebrew/opt/llvm@17/bin:$PATH"' >> ~/.zshrc
-```
-
-Para que los compiladores lo encuentren:
-
-```shell
-  export LDFLAGS="-L/opt/homebrew/opt/llvm@17/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/llvm@17/include"
-```
+Puedes ver con `brew info llvm@17` dónde ha quedado instalado
 
 #### Linux - CLang/CMake
 
@@ -115,14 +97,18 @@ git-repo-eol-analyzer/
 └── README.md
 ```
 
+El fichero [CMakeLists.txt](./CMakeLists.txt) está preparado para usar distintos PATHs y Variables de entorno según el sistema operativo.
+
 - Abro VSCode > "CMake: Configure" (dentro del comando VSCode (Ctrl/Cmd + Shift + P)).
 - Selecciono Clang como compilador.
 - (En Windows solo) Asegúrate de que Ninja esta seleccionado como Generador preferido
 - Después de la configuración, selecciona `CMake: Build` en la paleta de comandos.
 - Una vez compilado, ejecuta el proyecto directamente desde VSCode o desde el terminal,
 
-Windows: `.\build\git-repo-eol-analyzer.exe`
-MacOS o Linux: `./build/git-repo-eol-analyzer`
+Ejecución
+
+- Windows: `.\build\git-repo-eol-analyzer.exe`
+- MacOS o Linux: `./build/git-repo-eol-analyzer`
 
 ## Contribuciones
 
