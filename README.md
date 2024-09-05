@@ -69,6 +69,7 @@ brew upgrade
 brew install llvm@17
 brew install cmake
 brew install clang-format
+brew install ninja
 ```
 
 Puedes ver con `brew info llvm@17` dónde ha quedado instalado
@@ -107,13 +108,14 @@ git-repo-eol-analyzer/
 └── README.md
 ```
 
-El fichero [CMakeLists.txt](./CMakeLists.txt) está preparado para usar distintos PATHs y Variables de entorno según el sistema operativo.
+- [CMakeLists.txt](./CMakeLists.txt) - Configuración de CMake, peparado para multi sistema operativo.
+
+Pasos para configurar VSCode
 
 - Abro VSCode > "CMake: Configure" (dentro del comando VSCode (Ctrl/Cmd + Shift + P)).
-- Selecciono Clang como compilador.
-- (En Windows solo) Asegúrate de que Ninja esta seleccionado como Generador preferido
-- Después de la configuración, selecciona `CMake: Build` en la paleta de comandos.
-- Una vez compilado, ejecuta el proyecto directamente desde VSCode o desde el terminal,
+- Selecciono `Clang` como compilador y `Ninja` esta seleccionado como Generador preferido
+- Después de la configuración `CMake: Build` en la paleta de comandos.
+- Una vez compilado, ejecuto desde VSCode o desde el terminal,
 
 Ejecución
 
