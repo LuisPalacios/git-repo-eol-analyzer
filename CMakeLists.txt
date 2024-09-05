@@ -29,13 +29,12 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")  # Linux
 
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")  # Windows
     message(STATUS "Configuring for Windows")
-    set(CMAKE_C_COMPILER "C:/Program Files/LLVM/bin/clang.exe")
-    set(CMAKE_CXX_COMPILER "C:/Program Files/LLVM/bin/clang++.exe")
-    set(LLVM_PATH "C:/Program Files/LLVM")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${LLVM_PATH}/include")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${LLVM_PATH}/include")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${LLVM_PATH}/lib")
-
+    set(CMAKE_C_COMPILER "C:\\Program Files\\LLVM\\bin\\clang.exe")
+    set(CMAKE_CXX_COMPILER "C:\\Program Files\\LLVM\\bin\\clang++.exe")
+    set(LLVM_PATH "C:\\Program Files\\LLVM")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} \"-I${LLVM_PATH}\\include\"")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \"-I${LLVM_PATH}\\include\"")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} \"-L${LLVM_PATH}\\lib\"")
 else()
     message(FATAL_ERROR "Unsupported operating system: ${CMAKE_SYSTEM_NAME}")
 endif()
