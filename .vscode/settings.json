@@ -48,7 +48,5 @@
     // Extensión: shardulm94.trailing-spaces
     // Descripción: Resaltar espacios finales y eliminarlos rápidamente.
     "trailing-spaces.trimOnSave": true,
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+
 }
