@@ -6,7 +6,7 @@ Diagnostics:
   UnusedIncludes: None
 Index:
   StandardLibrary: Yes
-  Background: Yes
+  Background: Skip
 Completion:
   AllScopes: Yes
 InlayHints:

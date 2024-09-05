@@ -84,6 +84,16 @@ sudo apt install clang-format
 sudo apt install cmake
 ```
 
+Para instalar ninja desde los fuentes en linux:
+
+```shell
+cd tmp
+git clone git clone https://github.com/ninja-build/ninja.git
+cd ninja && git checkout release
+cmake -Bbuild-cmake && cmake --build build-cmake
+sudo cp build-cmake/ninja /usr/local/bin/ninja
+```
+
 ## Compilación del Proyecto
 
 Estructura del proyecto
