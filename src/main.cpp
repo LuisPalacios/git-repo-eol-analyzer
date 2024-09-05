@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <map>
 #include <regex>
 #include <set>
 #include <string>
@@ -17,6 +18,20 @@ const std::string RESET_COLOR = "\033[0m";
 const std::string GREEN = "\033[32m";   // LF (line feed)
 const std::string RED = "\033[31m";     // CR (carriage return)
 const std::string YELLOW = "\033[33m";  // CRLF
+
+// Struct para guardar las combinaciones
+struct EOLCount {
+  int onlyLF = 0;
+  int onlyCRLF = 0;
+  int onlyCR = 0;
+  int crlfLF = 0;
+  int crlfCR = 0;
+  int lfCR = 0;
+  int all = 0;
+};
+
+// Variable global para llevar la cuenta
+EOLCount eolCount;
 
 // Función que analiza el tipo de EOL en un archivo
 std::vector<std::string> analizar_eol(const std::string& file_path) {
@@ -87,6 +102,23 @@ std::vector<std::string> analizar_eol(const std::string& file_path) {
     std::cout << "Total CR: " << hasCR << std::endl;
 #endif
     eol_types.push_back(RED + "CR" + RESET_COLOR);
+  }
+
+  // Increment counters based on the detected combinations
+  if (hasLF > 0 && hasCR == 0 && hasCRLF == 0) {
+    eolCount.onlyLF++;
+  } else if (hasCRLF > 0 && hasLF == 0 && hasCR == 0) {
+    eolCount.onlyCRLF++;
+  } else if (hasCR > 0 && hasLF == 0 && hasCRLF == 0) {
+    eolCount.onlyCR++;
+  } else if (hasCRLF > 0 && hasLF > 0 && hasCR == 0) {
+    eolCount.crlfLF++;
+  } else if (hasCRLF > 0 && hasCR > 0 && hasLF == 0) {
+    eolCount.crlfCR++;
+  } else if (hasLF > 0 && hasCR > 0 && hasCRLF == 0) {
+    eolCount.lfCR++;
+  } else if (hasLF > 0 && hasCR > 0 && hasCRLF > 0) {
+    eolCount.all++;
   }
 
   return eol_types;
@@ -256,6 +288,17 @@ int main(int argc, char* argv[]) {
     // los directorios de primer nivel
     recorrer_directorios(current_dir, reglas, directorios_excluir, current_dir,
                          first_directory);
+
+    // Print the final report
+    std::cout << "\n\nNumber of files with:\n";
+    std::cout << "Only LF        : " << eolCount.onlyLF << "\n";
+    std::cout << "Only CRLF      : " << eolCount.onlyCRLF << "\n";
+    std::cout << "Only CR        : " << eolCount.onlyCR << "\n";
+    std::cout << "CRLF & LF      : " << eolCount.crlfLF << "\n";
+    std::cout << "CRLF & CR      : " << eolCount.crlfCR << "\n";
+    std::cout << "LF & CR        : " << eolCount.lfCR << "\n";
+    std::cout << "LF & CRLF & CR : " << eolCount.all << "\n";
+
   } catch (const std::exception& e) {
     std::cerr << "Error: " << e.what() << std::endl;
     return 1;
