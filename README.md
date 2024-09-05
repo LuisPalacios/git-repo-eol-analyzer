@@ -39,7 +39,7 @@ git clone https://github.com/LuisPalacios/git-repo-eol-analyzer.git
 
 ***Detalles de la Parametrizacion***
 
-- [.vscode/settings.json] - Configuro múltiples parámetros y cómo trabajar con Clang
+- [.vscode/settings.json](./.vscode/settings.json) - Configuro múltiples parámetros y cómo trabajar con Clang
 - [.clang-format](./.clang-format) - Utilizo clang-format como formato C++
 - [.clangd](./.clangd) - Utilizo clangd como sistema de intellisense (deshabilito el nativo de VSCode)
 - [.markdownlint.json](./.markdownlint.json) - Parametrizacion de la extension Markdown Lint
