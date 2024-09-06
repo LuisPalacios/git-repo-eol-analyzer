@@ -27,7 +27,13 @@ Utilizo CLANG 17 y C++20 como el estándar por defecto. He configurado este repo
 ### Requisitos Previos
 
 - **VSCode**: Asegúrate de tener instalado [VSCode](https://code.visualstudio.com/download) en tu sistema.
-- **Extensiones de VSCode**: Instalo las extensiones del fichero [extensions.json](./.vscode/extensions.json):
+- **Extensiones de VSCode**: Instalo todas las extensiones del fichero [.vscode/extensions.json](./.vscode/extensions.json)
+
+Importante:
+
+- Me aseguro de que el compilador Clang 17 está instalado en el sistema.
+- Me aseguro de que el compilador Clang 17 está en el PATH
+- Me aseguro de que Clang 17 está seleccionado en la extensión de CMake de VSCode, se hace desde el icono de CMake en la barra lateral de la izquierda, seleccionando la opción "Select a Kit". Elijo el que empieza por "`Clang 17...`"
 
 ### Clonar
 
@@ -121,6 +127,10 @@ Ejecución
 
 - Windows: `.\build\git-repo-eol-analyzer.exe`
 - MacOS o Linux: `./build/git-repo-eol-analyzer`
+
+## Unit Tests
+
+He preparado [Unit Tests](./UnitTests.md) para este repo.
 
 ## Contribuciones
 

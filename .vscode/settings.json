@@ -49,4 +49,8 @@
     // Descripción: Resaltar espacios finales y eliminarlos rápidamente.
     "trailing-spaces.trimOnSave": true,
 
+    // Extensión: twxs.cmake
+    // Impido que se ejecute un cmake para que configure nada más arrancar.
+    "cmake.configureArgs": [],
+    "cmake.configureOnOpen": false
 }
