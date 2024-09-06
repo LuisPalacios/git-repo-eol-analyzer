@@ -132,6 +132,10 @@ Ejecución
 
 He preparado [Unit Tests](./UnitTests.md) para este repo.
 
+## Git Hooks
+
+Consulta el documento [GitHook](./GitHook.md) donde describo cómo configuro `pre-commit`
+
 ## Contribuciones
 
 Si tienes sugerencias o mejoras, siéntete libre de hacer un fork de este repositorio y enviar un pull request.
