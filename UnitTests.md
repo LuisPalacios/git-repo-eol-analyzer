@@ -46,6 +46,9 @@ Los tests unitarios tienen como objetivo garantizar que la funcionalidad de dete
 **Depurar Tests:**: Usa la configuración `Debug Tests (codelldb)` desde la pestaña de `Run and Debug` en Visual Studio Code para depurar los tests.
 
 ### Ejecución de Tests
+
 Puedes ejecutar los tests seleccionando la tarea `Run Tests` o usando el terminal:
+
 ```bash
-ctest --output-on-failure
+ctest --output-on-failure --test-dir build
+```

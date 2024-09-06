@@ -106,4 +106,4 @@ add_executable(git-repo-eol-analyzer-tests
 target_link_libraries(git-repo-eol-analyzer-tests gtest gtest_main)
 
 # Añadir test al conjunto de pruebas
-add_test(NAME GitRepoEOLAnalyzerTests COMMAND git-repo-eol-analyzer-tests)
+add_test(NAME GitRepoEOLAnalyzerTests COMMAND git-repo-eol-analyzer-tests WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
