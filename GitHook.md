@@ -111,3 +111,23 @@ Run CTest before commit..................................................Passed
 
  El resto de desarrolladores solo tiene que instalarse `git-commit` y ejecutar `git-commit install` en su clone del respositorio.
 
+Windows
+
+PENDIENTE
+
+MacOS
+
+```bash
+🍏 luis@asterix:git-repo-eol-analyzer (● main ?) % brew install pre-commit
+:
+🍏 luis@asterix:git-repo-eol-analyzer (● main ?) % pre-commit install
+```
+
+Linux: Instalo `sudo apt install pre-commit` y ejecuto `git-commit install` desde la raiz del repo.
+
+```bash
+⚡ luis@wwwin:git-repo-eol-analyzer (main $) % sudo apt install pre-commit
+:
+⚡ luis@wwwin:git-repo-eol-analyzer (main $) % pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+```
