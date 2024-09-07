@@ -65,7 +65,7 @@ else()
 endif()
 
 # Evitar Warning: reexported library with install name
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-reexport_library,/opt/homebrew/opt/llvm@17/lib/libunwind.1.dylib")
+# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-reexport_library,/opt/homebrew/opt/llvm@17/lib/libunwind.1.dylib")
 
 # Añadir el ejecutable principal
 add_executable(git-repo-eol-analyzer

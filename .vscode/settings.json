@@ -7,6 +7,7 @@
     "files.encoding": "utf8",
     "files.eol": "\n",
     "files.trimTrailingWhitespace": true,
+    //"terminal.integrated.cwd": "${workspaceFolder}",
 
     // Extensión: xaver.clang-format y llvm-vs-code-extensions.vscode-clangd
     // Asegura que clang-format se utilice para formatear archivos C++
