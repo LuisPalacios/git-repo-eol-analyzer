@@ -114,14 +114,27 @@ git-repo-eol-analyzer/
 └── README.md
 ```
 
-- [CMakeLists.txt](./CMakeLists.txt) - Configuración de CMake, peparado para multi sistema operativo.
+Configuración con CMake (Línea de Comandos)
 
-Pasos para configurar VSCode
+- Linux/MacOS: `cmake -S . -B build -G Ninja`
+- Windows: `cmake -S . -B build -G Ninja -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang.exe" -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang++.exe"`
+
+Compilación con CMake (Línea de Comandos). Una vez que el proyecto ha sido configurado correctamente,
+
+- Linux/MacOS/Windows: `cmake --build build`
+
+Instalación (copia `git-repo-eol-analyzer` (o `git-repo-eol-analyzer.exe` en Windows)  a `/usr/local/bin` (o `c:\user\local\bin`).
+
+- Linux/MacOS: `sudo cmake --install build`
+- Windows: `cmake --install build`
+
+Configuración y Compilación con VSCode
 
 - Abro VSCode > "CMake: Configure" (dentro del comando VSCode (Ctrl/Cmd + Shift + P)).
-- Selecciono `Clang` como compilador y `Ninja` esta seleccionado como Generador preferido
-- Después de la configuración `CMake: Build` en la paleta de comandos.
-- Una vez compilado, ejecuto desde VSCode o desde el terminal,
+- Selecciono `Clang` como compilador y me aseguro de que `Ninja` esta seleccionado como Generador preferido
+- Configurará o Generará de forma automática.
+- Alternativamente puedes entrar en commando > Tasks: Run Tasks y seleccionar la que te interese.
+- Tambien puedes pulsar `Ctrl|Cd + Shift + B` para que haga el build.
 
 Ejecución
 

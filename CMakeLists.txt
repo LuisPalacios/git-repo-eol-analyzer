@@ -80,6 +80,13 @@ add_executable(git-repo-eol-analyzer
     src/eol_analyzer.cpp
 )
 
+# Instalar el ejecutable según la plataforma
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    install(TARGETS git-repo-eol-analyzer DESTINATION "C:/usr/local/bin")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    install(TARGETS git-repo-eol-analyzer DESTINATION "/usr/local/bin")
+endif()
+
 ##########################################################################
 ## Unit Tests
 ## Utilizo GoogleTest, en concreto la modalidad de integrarme con
@@ -100,6 +107,10 @@ endif()
 #    find_package(Threads REQUIRED)
 # endif()
 
+# Desactivar la instalación de GoogleTest
+set(INSTALL_GTEST OFF CACHE BOOL "Disable installing GoogleTest" FORCE)
+set(INSTALL_GMOCK OFF CACHE BOOL "Disable installing GoogleMock" FORCE)
+
 # Añadir subdirectorio de GoogleTest
 include(FetchContent)
 FetchContent_Declare(
@@ -112,8 +123,14 @@ FetchContent_Declare(
 
 # Evita que GoogleTest maneje los tests principales
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+# Desactivar la construcción de GoogleMock
+set(BUILD_GMOCK OFF CACHE BOOL "Disable building GoogleMock" FORCE)
+
+# Añadir GoogleTest
 FetchContent_MakeAvailable(googletest)
 
+# Habilitar los tests
 enable_testing()
 
 # Añadir el ejecutable de tests
@@ -125,5 +142,5 @@ add_executable(git-repo-eol-analyzer-tests
 # Enlazar GoogleTest con el ejecutable de tests
 target_link_libraries(git-repo-eol-analyzer-tests gtest gtest_main)
 
-# Añadir test al conjunto de pruebas
+# Asegura que el ejecutable de tests se compile correctamente
 add_test(NAME GitRepoEOLAnalyzerTests COMMAND git-repo-eol-analyzer-tests WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
