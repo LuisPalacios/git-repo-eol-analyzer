@@ -152,8 +152,7 @@ std::string formatear_ruta(const fs::path& dir_path, const fs::path& base_dir) {
   return "./" + fs::relative(dir_path, base_dir).string();
 }
 
-// Función para recorrer directorios recursivamente, ignorando los que estén en
-// .gitignore y los directorios en la lista de exclusión
+// Función para recorrer directorios de forma ordenada
 void recorrer_directorios(const fs::path& dir_path,
                           const std::vector<std::string>& reglas,
                           const std::set<std::string>& directorios_excluir,
@@ -178,7 +177,21 @@ void recorrer_directorios(const fs::path& dir_path,
     first_directory = false;
   }
 
+  // Almacenar las entradas de directorio en un vector para ordenarlas
+  std::vector<fs::directory_entry> entries;
   for (const auto& entry : fs::directory_iterator(dir_path)) {
+    entries.push_back(entry);
+  }
+
+  // Ordenar las entradas alfabéticamente
+  std::sort(entries.begin(), entries.end(),
+            [](const fs::directory_entry& a, const fs::directory_entry& b) {
+              return a.path().filename().string() <
+                     b.path().filename().string();
+            });
+
+  // Recorrer las entradas ya ordenadas
+  for (const auto& entry : entries) {
     // Ignorar directorios de primer nivel especificados en el array de
     // exclusión
     if (directorios_excluir.find(entry.path().filename().string()) !=
@@ -240,3 +253,94 @@ void recorrer_directorios(const fs::path& dir_path,
     }
   }
 }
+
+// // Función para recorrer directorios recursivamente, ignorando los que estén
+// en
+// // .gitignore y los directorios en la lista de exclusión
+// void recorrer_directorios(const fs::path& dir_path,
+//                           const std::vector<std::string>& reglas,
+//                           const std::set<std::string>& directorios_excluir,
+//                           const fs::path& base_dir,
+//                           bool& first_directory) {
+//   // Variable para el mensaje del nombre del directorio
+//   const std::string directory_label = "Directory: ";
+//   // Variable para almacenar los tipos de EOL detectados
+//   EOLTypes eolTypes;
+//   // Variable para almacenar los mensajes en pantalla de tipos de EOL
+//   // encontrados en cada archivo
+//   std::vector<std::string> eol_types;
+
+//   // Mostrar el directorio actual; no agregar línea en blanco si es el primer
+//   // directorio
+//   if (!first_directory) {
+//     std::cout << std::endl
+//               << directory_label << formatear_ruta(dir_path, base_dir) << ":"
+//               << std::endl;
+//   } else {
+//     std::cout << directory_label << "." << std::endl;
+//     first_directory = false;
+//   }
+
+//   for (const auto& entry : fs::directory_iterator(dir_path)) {
+//     // Ignorar directorios de primer nivel especificados en el array de
+//     // exclusión
+//     if (directorios_excluir.find(entry.path().filename().string()) !=
+//         directorios_excluir.end()) {
+//       continue;
+//     }
+
+//     // Ignorar archivos y directorios según las reglas de .gitignore
+//     if (ignorar_archivo_o_directorio(entry.path(), reglas)) {
+//       continue;
+//     }
+
+//     if (fs::is_directory(entry)) {
+//       recorrer_directorios(entry.path(), reglas, directorios_excluir,
+//       base_dir,
+//                            first_directory);  // Recursividad
+//     } else if (fs::is_regular_file(entry)) {
+//       std::string file_path = entry.path().string();
+//       if (es_archivo_de_texto(file_path)) {
+//         eolTypes = analizar_eol(file_path);
+//         eol_types.clear();  // Limpiar el vector de tipos de EOL
+// #ifdef DEBUG_MODE
+//         std::cout << "Resultados del análisis:\n";
+// #endif
+//         if (eolTypes.hasCRLF > 0) {
+// #ifdef DEBUG_MODE
+//           std::cout << "Total CRLF: " << eolTypes.hasCRLF << std::endl;
+// #endif
+//           eol_types.push_back(YELLOW + "CRLF" + RESET_COLOR);
+//         }
+//         if (eolTypes.hasLF > 0) {
+// #ifdef DEBUG_MODE
+//           std::cout << "Total LF: " << eolTypes.hasLF << std::endl;
+// #endif
+//           eol_types.push_back(GREEN + "LF" + RESET_COLOR);
+//         }
+//         if (eolTypes.hasCR > 0) {
+// #ifdef DEBUG_MODE
+//           std::cout << "Total CR: " << eolTypes.hasCR << std::endl;
+// #endif
+//           eol_types.push_back(RED + "CR" + RESET_COLOR);
+//         }
+
+//         std::cout << " " << entry.path().filename().string() << ":";
+
+//         // Espaciado dinámico para alinear la salida a partir de la columna
+//         80 const int output_column = 60; std::string file_name =
+//         entry.path().filename().string(); int current_length =
+//         file_name.length() + 2;  // 2 es para ": " if (current_length <
+//         output_column) {
+//           std::cout << std::string(output_column - current_length, ' ');
+//         }
+
+//         // Mostrar los tipos de EOL encontrados, justificados a la derecha
+//         for (const auto& eol_type : eol_types) {
+//           std::cout << eol_type << " ";
+//         }
+//         std::cout << std::endl;
+//       }
+//     }
+//   }
+// }
