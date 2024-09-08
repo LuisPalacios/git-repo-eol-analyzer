@@ -12,7 +12,7 @@
 
 // Test para analizar EOL en un archivo con solo LF
 TEST(EOLAnalyzerTest, OnlyLF) {
-  std::string test_file = "test_files/test_only_lf.test";
+  std::string test_file = "test_files/test_only_LF.test";
   auto result = analizar_eol(test_file);
   ASSERT_GT(result.hasLF, 0);
   ASSERT_EQ(result.hasCR, 0);
@@ -21,7 +21,7 @@ TEST(EOLAnalyzerTest, OnlyLF) {
 
 // Test para analizar EOL en un archivo con solo CRLF
 TEST(EOLAnalyzerTest, OnlyCRLF) {
-  std::string test_file = "test_files/test_only_crlf.test";
+  std::string test_file = "test_files/test_only_CRLF.test";
   auto result = analizar_eol(test_file);
   ASSERT_EQ(result.hasLF, 0);
   ASSERT_EQ(result.hasCR, 0);

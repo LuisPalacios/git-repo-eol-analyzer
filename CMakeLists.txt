@@ -44,13 +44,29 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")  # macOS
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${LLVM_PATH}/include")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${LLVM_PATH}/lib")
 
-elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")  # Linux
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")  # Linux
     message(STATUS "Configurando para Linux")
     set(CMAKE_C_COMPILER "/usr/bin/clang-17")
     set(CMAKE_CXX_COMPILER "/usr/bin/clang++-17")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I/usr/include/llvm-17")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/usr/include/llvm-17")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L/usr/lib/llvm-17/lib")
+
+    # Forzar el compilador en Linux
+    if (NOT DEFINED CMAKE_CXX_COMPILER_INITIALIZED_TO_DEFAULT)
+        set(CMAKE_CXX_COMPILER "/usr/bin/clang++-17" CACHE FILEPATH "C++ compiler" FORCE)
+    endif()
+    if (NOT DEFINED CMAKE_C_COMPILER_INITIALIZED_TO_DEFAULT)
+        set(CMAKE_C_COMPILER "/usr/bin/clang-17" CACHE FILEPATH "C compiler" FORCE)
+    endif()
+
+# elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")  # Linux
+#     message(STATUS "Configurando para Linux")
+#     set(CMAKE_C_COMPILER "/usr/bin/clang-17")
+#     set(CMAKE_CXX_COMPILER "/usr/bin/clang++-17")
+#     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I/usr/include/llvm-17")
+#     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/usr/include/llvm-17")
+#     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L/usr/lib/llvm-17/lib")
 
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")  # Windows
     message(STATUS "Configurando para Windows")

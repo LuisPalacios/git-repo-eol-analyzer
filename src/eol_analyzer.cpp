@@ -57,6 +57,8 @@ EOLTypes analizar_eol(const std::string& file_path) {
       }
       byte_idx++;
     }
+  } else [[unlikely]] {
+    std::cerr << "Error al abrir el archivo: " << file_path << std::endl;
   }
 
   // Increment counters based on the detected combinations
