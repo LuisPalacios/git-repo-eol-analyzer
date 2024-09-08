@@ -74,6 +74,16 @@ Clonar el repositorio en Windows, MacOS o Linux
 git clone https://github.com/LuisPalacios/git-repo-eol-analyzer.git
 ```
 
+Una vez que hayas hecho el clone, es importante, si quieres aprovechar el hook que he preparado, instalar `pre-commit` y activarlo en el repositorio. Lo explico en el documento [GitHook pre-commit](./doc/GitHook.md). Muy resumido sería:
+
+- MacOS: `brew install pre-commit`
+- Linux: `sudo apt install pre-commit`
+- Windows: `pip install pre-commit`
+
+```shell
+pre-commit install
+```
+
 ***Detalles de la Parametrizacion***
 
 - [.vscode/settings.json](./.vscode/settings.json) - Configuro múltiples parámetros y cómo trabajar con Clang
@@ -185,7 +195,7 @@ Ejecución
 
 ## Git Hooks
 
-Consulta el documento [GitHook](./doc/GitHook.md) donde describo cómo configuro `pre-commit`
+Consulta el documento [GitHook](./doc/GitHook.md) donde describo cómo configuro `pre-commit` en este repositorio.
 
 ## Contribuciones
 
