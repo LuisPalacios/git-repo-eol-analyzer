@@ -1,8 +1,20 @@
 repos:
   - repo: local
     hooks:
-      - id: run-tests
-        name: Run CTest before commit
-        entry: /usr/bin/env bash ./pre-commit/run-tests.sh
+      # Hook para Linux/macOS
+      # - id: run-tests-unix
+      #   name: Run CTest before commit (Linux/macOS)
+      #   entry: /usr/bin/env bash ./pre-commit/run-tests.sh
+      #   language: script
+      #   stages: [commit]
+      #   files: ^(.*)$  # Aplica a todos los archivos
+      #   exclude: .*\\.ps1$
+
+      # Hook para Windows
+      - id: run-tests-windows
+        name: Run CTest before commit (Windows)
+        entry: /Windows/System32/cmd.exe /c ".\pre-commit\run-tests.ps1"
         language: script
         stages: [commit]
+        files: ^(.*)$  # Aplica a todos los archivos
+        exclude: .*\\.sh$
