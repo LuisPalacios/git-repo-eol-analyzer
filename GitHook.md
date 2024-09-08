@@ -104,4 +104,4 @@ Run CTest before commit..................................................Passed
  create mode 100755 pre-commit/run-tests.sh
  ```
 
-El resto de desarrolladores solo tiene que instalarse `pre-commit` y ejecutar `pre-commit install` en su clone del respositorio.
+El resto de desarrolladores solo tiene que instalarse el programa y ejecutar `pre-commit install` en su clone del respositorio.
