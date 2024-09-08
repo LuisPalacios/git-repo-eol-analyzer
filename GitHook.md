@@ -1,19 +1,23 @@
 # Git Hooks
 
-## Git pre-commit Hook
+## Introducción
 
-Para asegurarme de que los tests se ejecuten automáticamente antes de cada commit, voy a configurar un pre-commit hook en Git. Esto asegura que los tests unitarios se ejecuten y tengan éxito antes de permitir un commit.
+Para asegurarme de que mi repo cumpla una serie de estándares de formato, que pasa los tests antes del commit, etc. voy a emplear Git Hooks.
 
-Creo el hook de pre-commit:
+Una forma de hacerlo es creando scripts en `.git/hooks`, pero el problema que esto plantea es que hay que hacerlo cada vez que se clone por primera vez el repositorios.
 
-El hook de pre-commit es un script que se ejecuta automáticamente antes de que un commit se realice. Este script debe estar ubicado en el directorio .git/hooks/ y llamarse pre-commit.
+Para resolverlo, existe un proyecto llamado precisamente [`pre-commit`](https://pre-commit.com/) que está desarrollado en Python y se apoya en un fichero llamado `.pre-commit-config.yaml` en la raiz del repositorio. Lo único que hay que hacer con el primer clone es ejecutar `pip install pre-commit` para que cree el fichero `.git/hooks/pre-commit`
+
+### Prueba de concepto
+
+Antes de instalar [`pre-commit`](https://pre-commit.com/), veamos cómo se haría sin dicha herramienta.
 
 ```shell
 mkdir -p .git/hooks
 touch .git/hooks/pre-commit
 ```
 
-Edito el script del hook `e .git/hooks/pre-commit`. Si no está ya compilado, el proyecto se compilará, ejecuta los tests con `ctest`, aborta el commit si los tests fallan y lo permite si pasan.
+Edito un script `e .git/hooks/pre-commit`, que básicamente mira a ver si el proyecto está compilado, en su defecto lo compilará, ejecutará los tests con `ctest` y aborta el commit si los tests fallan, en caso conctrario lo permitirá.
 
 ```shell
 #!/bin/bash
@@ -39,19 +43,32 @@ echo "Tests passed. Proceeding with commit."
 exit 0
 ```
 
-Hago que el fichero sea ejecutable
+Hago que el fichero sea ejecutable, modifico mi proyecto y hago un commit, si todo va bien verás cómo pasa el commit, porque los tests pasan.
 
 ```bash
 chmod +x .git/hooks/pre-commit
+
+touch poc.txt
+git add .
+git commit -m "Prueba pre-commit"
+:
 ```
 
-A partir de ahora cuando haga un commit se ejecutarán los test.
+Ya puedo borrar el fichero de prueba y el pre-commit.
+
+```bash
+rm poc.txt ./git/hooks/pre-commit
+```
 
 ## Instalo `pre-commit`
 
-Voy a ir un paso más allá. He instalado [`pre-commit`](https://pre-commit.com/), de tal modo que el script de testing lo saco al repositorio. Los desarrolladores solo tienen que installar pre-commit y los tests que yo haya dejado se ejecutarán.
+Prefiero usar [`pre-commit`](https://pre-commit.com/), de tal modo que el script de testing lo saco al repositorio. Los desarrolladores solo tienen que installar pre-commit y los tests que yo haya dejado se ejecutarán.
 
-La primera vez, instalo la herramienta `pre-commit` (como es un Mac uso `brew install pre-commit`). Al ejecutarlo va a sobreescribir el fichero que había hecho en el paso anterior.
+Instalo la herramienta `pre-commit`
+
+* MacOS: `brew install pre-commit`
+* Linux: `sudo apt install pre-commit`
+* Windows: `pip install pre-commit` desde CMD o PowerShell. Nota: Es muy importante que tengas Python perfectamente instalado en Windows (echa un ojo a este [apunte](https://www.luispa.com/desarrollo/2024/08/25/win-desarrollo.html#python-pip-y-pipenv)).
 
 Creo el fichero `.pre-commit-config.yaml` en la raíz del proyecto
 
@@ -66,37 +83,15 @@ repos:
         stages: [commit]
 ```
 
-Vuelvo a crear el fichero que hace el test pero esta vez creo el directorio y el fichero `./pre-commit/run-tests.sh`
+Creo el script que ejecuta el test, [`./pre-commit/run-tests.sh`](./pre-commit/run-tests.sh)
+
+Ejecuto `pre-commit install` para que me cree el script git hook
 
 ```bash
-#!/bin/bash
-
-# Navigate to the root of the repository
-REPO_ROOT=$(git rev-parse --show-toplevel)
-cd "$REPO_ROOT"
-
-# Build the project
-echo "Building the project..."
-cmake -S . -B build
-cmake --build build
-
-# Run the tests
-echo "Running tests..."
-cd build
-ctest --output-on-failure
-TEST_RESULT=$?
-
-# If the tests fail, abort the commit
-if [ $TEST_RESULT -ne 0 ]; then
-  echo "Tests failed. Aborting commit."
-  exit 1
-fi
-
-echo "Tests passed. Proceeding with commit."
-exit 0
+pre-commit install
 ```
 
-Cuando hago un commit observo lo siguiente:
+La próxima vez que haga un commit, observo lo siguiente:
 
 ```bash
 🍏 luis@asterix:git-repo-eol-analyzer (●● main +?x) % git add .
@@ -109,25 +104,4 @@ Run CTest before commit..................................................Passed
  create mode 100755 pre-commit/run-tests.sh
  ```
 
- El resto de desarrolladores solo tiene que instalarse `git-commit` y ejecutar `git-commit install` en su clone del respositorio.
-
-Windows
-
-PENDIENTE
-
-MacOS
-
-```bash
-🍏 luis@asterix:git-repo-eol-analyzer (● main ?) % brew install pre-commit
-:
-🍏 luis@asterix:git-repo-eol-analyzer (● main ?) % pre-commit install
-```
-
-Linux: Instalo `sudo apt install pre-commit` y ejecuto `git-commit install` desde la raiz del repo.
-
-```bash
-⚡ luis@wwwin:git-repo-eol-analyzer (main $) % sudo apt install pre-commit
-:
-⚡ luis@wwwin:git-repo-eol-analyzer (main $) % pre-commit install
-pre-commit installed at .git/hooks/pre-commit
-```
+El resto de desarrolladores solo tiene que instalarse `pre-commit` y ejecutar `pre-commit install` en su clone del respositorio.
