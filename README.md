@@ -130,11 +130,11 @@ Ejecución
 
 ## Unit Tests
 
-He preparado [Unit Tests](./UnitTests.md) para este repo.
+He preparado [Unit Tests](./doc/UnitTests.md) para este repo.
 
 ## Git Hooks
 
-Consulta el documento [GitHook](./GitHook.md) donde describo cómo configuro `pre-commit`
+Consulta el documento [GitHook](./doc/GitHook.md) donde describo cómo configuro `pre-commit`
 
 ## Contribuciones
 
