@@ -123,11 +123,6 @@ Compilación con CMake (Línea de Comandos). Una vez que el proyecto ha sido con
 
 - Linux/MacOS/Windows: `cmake --build build`
 
-Instalación (copia `git-repo-eol-analyzer` (o `git-repo-eol-analyzer.exe` en Windows)  a `/usr/local/bin` (o `c:\user\local\bin`).
-
-- Linux/MacOS: `sudo cmake --install build`
-- Windows: `cmake --install build`
-
 Configuración y Compilación con VSCode
 
 - Abro VSCode > "CMake: Configure" (dentro del comando VSCode (Ctrl/Cmd + Shift + P)).
@@ -140,6 +135,13 @@ Ejecución
 
 - Windows: `.\build\git-repo-eol-analyzer.exe`
 - MacOS o Linux: `./build/git-repo-eol-analyzer`
+
+### Instalación de los ejecutables
+
+Se pueden instalar los ejecuables en un directorio del sistema, en este caso copia `git-repo-eol-analyzer` (o `git-repo-eol-analyzer.exe` en Windows)  a `/usr/local/bin` (o `c:\user\local\bin`).
+
+- Linux/MacOS: `sudo cmake --install build`
+- Windows: `cmake --install build`
 
 ## Unit Tests
 
