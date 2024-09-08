@@ -28,8 +28,9 @@ EOLTypes analizar_eol(const std::string& file_path) {
   if (file.is_open()) {
     while (file.get(current)) {
       if (prev == '\r' && current == '\n') {
-        eolTypes.hasCRLF++;  // Incrementar uno de CRLF si se detecta
-        eolTypes.hasCR--;    // Restar uno de CR si fue parte de CRLF
+        eolTypes.hasCRLF =
+            eolTypes.hasCRLF + 1;  // Incrementar uno de CRLF si se detecta
+        eolTypes.hasCR--;          // Restar uno de CR si fue parte de CRLF
 #ifdef DEBUG_MODE
         std::cout << "Pos " << byte_idx << ": Detectado CRLF ("
                   << eolTypes.hasCRLF << ")\n";
