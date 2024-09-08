@@ -6,5 +6,4 @@ repos:
         entry: ./pre-commit/run-tests-multiplatform.py
         language: system
         files: ^(.*)$ # All files
-        #types: [python]
         stages: [commit]

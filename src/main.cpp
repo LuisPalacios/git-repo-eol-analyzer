@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     recorrer_directorios(current_dir, reglas, directorios_excluir, current_dir,
                          first_directory);
 
-    std::cout << "\n\Número de ficheros con:\n";
+    std::cout << "\nNúmero de ficheros con:\n";
     std::cout << "Only LF        : " << eolCount.onlyLF << "\n";
     std::cout << "Only CRLF      : " << eolCount.onlyCRLF << "\n";
     std::cout << "Only CR        : " << eolCount.onlyCR << "\n";
