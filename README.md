@@ -1,9 +1,9 @@
 # Introducción
 
-Este repositorio empieza como un ejercicio para tener proyecto C++ multiplataforma, de tal manera que puediese **clonarse, compilarse y ejecutarse en Windows, MacOS y Linux**. Para conseguirlo he ido hacieno modificaciones, hasta llegar a seleccionar y configurar lo siguiente:
+Este repositorio empezó como un ejercicio para crear un proyecto C++ multiplataforma, que puediese **clonar, compilar y ejecutar en Windows, MacOS y Linux**. Fui avanzando y he terminado con un proyecto que utiliza:
 
-- Compilador **Clang versión 17 con estándar C++20**
-- Herramieta para hacer el Build: **CMake** y **Ninja**
+- El compilador **Clang versión 17 con estándar C++20**
+- Herramienta para hacer el Build: **CMake** y **Ninja**
 - Herramienta para seguir una convención de Formato: **`clang-format`** basado en el estilo Chromium
 - Como entorno IDE: **VSCode** con varias extensiones:
   - ClangD como intellisense, autocompletado, sugerencias, etc.
@@ -15,12 +15,43 @@ Este repositorio empieza como un ejercicio para tener proyecto C++ multiplatafor
 
 ## Objetivos
 
-He marcado varios objetivos
+He marcado varios objetivos, de más a menos importantes:
 
-- Crear un ejemplo de proyecto multiplataforma en C++ con CMake y VSCode, que funcione transparentemente en Windows 11, MacOS y Linux Ubuntu
-- Documentar cómo clonar, compilar y ejecutar el proyecto.
-- Que el propio proyecto sirva para algo. En desarrollo de software multiplataforma, uno de los aspectos más sutiles pero cruciales que debes tener en cuenta es la diferencia entre los finales de línea en archivos de texto entre Windows y Linux/MacOS. Por lo tanto, este proyecto genera un ejecutable que te ayuda a identificar cual es el EOL (End Of Line) o final de línea que se está usando en los ficheros de texto de un repositorio.
+- Crear un ejemplo de proyecto multiplataforma en C++
+- Documentar cómo clonar, compilar y ejecutar en todos los sistemas operativos.
 - Implementar `.gitattributes` para aprender a configurar bien el tema de CRLF vs LF.
+- Que el ejecutable generado pueda decirme que EOL (End Of Line) tienen los archivos del working directory de un repositorio git.
+
+Es una versión super light de lo que hace el propio `git`, de hecho no pretende ni mucho menos acercarse. El comando siguiente es potentísimo y nos da una información muy valiosa
+
+```bash
+git ls-files --eol
+:
+i/lf    w/crlf  attr/text=auto eol=lf   file.txt
+```
+
+En este caso, `i/lf` significa que el fichero usa `LF` en el index, `w/crlf` significa ue usa `CRLF` en el working directory.
+
+El ejecutable `git-repo-eol-analyzer` es una versión LIGHT, informará de qué tiene en realidad los ficheros de texto del working directory.
+
+```bash
+git-repo-eol-analyzer
+:
+Directory: ./src:
+ eol_analyzer.cpp:                                          LF
+ eol_analyzer.h:                                            LF
+ main.cpp:                                                  LF
+
+Directory: ./test_files:
+ test_CRLF_CR.test:                                         CRLF CR
+ test_CRLF_LF.test:                                         CRLF LF
+ test_CRLF_LF_CR.test:                                      CRLF LF CR
+ test_LF_CR.test:                                           LF CR
+ test_only_CR.test:                                         CR
+ test_only_CRLF.test:                                       CRLF
+ test_only_LF.test:                                         LF
+```
+
 
 ## Preparar el Entorno
 
