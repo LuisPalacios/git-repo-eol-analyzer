@@ -5,5 +5,6 @@ repos:
         name: Run CTest before commit
         entry: ./pre-commit/run-tests-multiplatform.py
         language: system
-        types: [python]
+        files: ^(.*)$ # All files
+        #types: [python]
         stages: [commit]

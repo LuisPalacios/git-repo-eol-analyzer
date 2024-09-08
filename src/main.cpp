@@ -5,7 +5,7 @@
 namespace fs = std::filesystem;
 
 int main(int argc, char* argv[]) {
-  std::cout << "git-repo-eol-analyzer (Compiled with CLANG-17 - ";
+  std::cout << "git-repo-eol-analyzer (Compiled w/ CLANG-17 - ";
 #if __cplusplus == 199711L
   std::cout << "C++98 standard)" << std::endl;
 #elif __cplusplus == 201103L
