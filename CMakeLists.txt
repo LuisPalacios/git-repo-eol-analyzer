@@ -43,6 +43,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")  # macOS
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${LLVM_PATH}/include")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${LLVM_PATH}/include")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${LLVM_PATH}/lib")
+    # Evitar Warning: reexported library with install name
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-reexport_library,/opt/homebrew/opt/llvm@17/lib/libunwind.1.dylib")
 
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")  # Linux
     message(STATUS "Configurando para Linux")
@@ -71,9 +73,6 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")  # Windows
 else()
     message(FATAL_ERROR "Sistema operativo no soportado: ${CMAKE_SYSTEM_NAME}")
 endif()
-
-# Evitar Warning: reexported library with install name
-# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-reexport_library,/opt/homebrew/opt/llvm@17/lib/libunwind.1.dylib")
 
 # Añadir el ejecutable principal
 add_executable(git-repo-eol-analyzer
