@@ -1,26 +1,26 @@
-# Analiza el EOL de los ficheros de un repositorio Git
+# Introducción
 
-Este proyecto se origina como una proyecto C++ MultiPlatforma, de tal manera que puede clonarse, compilarse y ejecutarse en Windows, MacOS y Linux.
+Este repositorio empieza como un ejercicio para tener proyecto C++ multiplataforma, de tal manera que puediese **clonarse, compilarse y ejecutarse en Windows, MacOS y Linux**. Para conseguirlo he ido hacieno modificaciones, hasta llegar a seleccionar y configurar lo siguiente:
 
-- Compilador: Clang versión 17 con estándar C++20
-- Build: CMake
-- Formato: Clang-Format basado en el estilo Chromium
-- IDE: VSCode con varias extensiones:
+- Compilador **Clang versión 17 con estándar C++20**
+- Herramieta para hacer el Build: **CMake** y **Ninja**
+- Herramienta para seguir una convención de Formato: **`clang-format`** basado en el estilo Chromium
+- Como entorno IDE: **VSCode** con varias extensiones:
   - ClangD como intellisense, autocompletado, sugerencias, etc.
   - CMake y Cmake Tools
+  - Debug con vscode-lldb.
+  - Las Cpptools de VSCode.
+  - Clang-format, prettier
+  - Eliminar trailing spaces y markdownlint
 
-## Introducción
+## Objetivos
 
-El objetivo de este proyecto es doble:
+He marcado varios objetivos
 
 - Crear un ejemplo de proyecto multiplataforma en C++ con CMake y VSCode, que funcione transparentemente en Windows 11, MacOS y Linux Ubuntu
-- Ayudar a identificar cual es el EOL (End Of Line) o final de línea que se está usando en los ficheros de texto de un repositorio.
-
-Al trabajar en desarrollo de software multiplataforma, uno de los aspectos más sutiles pero cruciales que debes tener en cuenta es la diferencia entre los finales de línea en archivos de texto entre Windows y Linux/MacOS. Este pequeño detalle puede generar grandes problemas si no se maneja correctamente, especialmente cuando se trabaja en entornos mixtos, conflictos en el control de versiones incompatibilidades en scripts, problemas de compilación o ejecución.
-
-## CLANG
-
-Utilizo CLANG 17 y C++20 como el estándar por defecto. He configurado este repositorio de tal forma que VSCode utiliza la extension `clangd` para hacer el Intellisense, de hecho he deshabilitado el que trae por defecto.
+- Documentar cómo clonar, compilar y ejecutar el proyecto.
+- Que el propio proyecto sirva para algo. En desarrollo de software multiplataforma, uno de los aspectos más sutiles pero cruciales que debes tener en cuenta es la diferencia entre los finales de línea en archivos de texto entre Windows y Linux/MacOS. Por lo tanto, este proyecto genera un ejecutable que te ayuda a identificar cual es el EOL (End Of Line) o final de línea que se está usando en los ficheros de texto de un repositorio.
+- Implementar `.gitattributes` para aprender a configurar bien el tema de CRLF vs LF.
 
 ## Preparar el Entorno
 
@@ -131,6 +131,11 @@ Ejecución
 ## Unit Tests
 
 He preparado [Unit Tests](./doc/UnitTests.md) para este repo.
+
+Ejecución
+
+- Windows: `.\build\git-repo-eol-analyzer-tests.exe`
+- MacOS o Linux: `./build/git-repo-eol-analyzer-tests`
 
 ## Git Hooks
 
