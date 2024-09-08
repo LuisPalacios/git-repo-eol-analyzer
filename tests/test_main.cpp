@@ -5,6 +5,7 @@
 // Para mostrar el path desde donde se esta ejecutando el test
 #ifdef _WIN32
 #include <windows.h>
+#define PATH_MAX MAX_PATH
 #else
 #include <limits.h>
 #include <unistd.h>

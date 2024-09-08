@@ -31,24 +31,6 @@
       "problemMatcher": [],
       "dependsOn": "EOLAnalyzer CMake: Configure",
       "detail": "Hace el build (compila) del proyecto que ha tenido que ser configurado previamente."
-    },
-    {
-      "type": "shell",
-      "label": "EOLAnalyzer CMake: Configure & Build",
-      "command": "cmake",
-      "args": [
-        "-S", "${workspaceFolder}",
-        "-B", "${workspaceFolder}/build",
-        "&&",
-        "cmake",
-        "--build", "${workspaceFolder}/build"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": [],
-      "detail": "Hace ambos, el Configure y el Build del proyecto utilizando un solo comando."
     }
   ]
 }

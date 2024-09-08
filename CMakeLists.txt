@@ -60,14 +60,6 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")  # Linux
         set(CMAKE_C_COMPILER "/usr/bin/clang-17" CACHE FILEPATH "C compiler" FORCE)
     endif()
 
-# elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")  # Linux
-#     message(STATUS "Configurando para Linux")
-#     set(CMAKE_C_COMPILER "/usr/bin/clang-17")
-#     set(CMAKE_CXX_COMPILER "/usr/bin/clang++-17")
-#     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I/usr/include/llvm-17")
-#     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/usr/include/llvm-17")
-#     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L/usr/lib/llvm-17/lib")
-
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")  # Windows
     message(STATUS "Configurando para Windows")
     set(CMAKE_C_COMPILER "C:\\Program Files\\LLVM\\bin\\clang.exe")
@@ -95,6 +87,19 @@ add_executable(git-repo-eol-analyzer
 ## CMake y descargaralo desde aquí, como un paso más del proceso de Build
 ##
 ##########################################################################
+
+# GoogleTest desencadena que CMake busque pthread para saber si el sistema
+# operativo soporta multihilo. En Windows, pthread no es parte del SO,
+# ya que utiliza su propia API para manejar hilos, como WinAPI Threads.
+# Por tanto, en Windows, no es necesario buscar pthread.
+if (WIN32)
+    set(gtest_disable_pthreads ON CACHE BOOL "Disable GoogleTest's use of pthreads" FORCE)
+endif()
+# Si mi proyecto requisiese pthread, tendria ademas que descomentar las
+# tres líneas siguientes y ponerlas en la parte superior de CMakelists.txt
+# if (NOT WIN32)
+#    find_package(Threads REQUIRED)
+# endif()
 
 # Añadir subdirectorio de GoogleTest
 include(FetchContent)
