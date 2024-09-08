@@ -10,22 +10,30 @@
 #
 # 1. Busca y convierte todos los archivos a LF (Unix) en tu repositorio
 #
-#   find . -type f -not -path "./.git/*" -exec dos2unix {} \;
+#   OJO! Hay que tener mucho cuidado con convertir solo lo necesario, en este
+#   ejemplo solo convierto lo que está debajo de "src", porque me aseguro de
+#   que no haya archivos que no deban ser modificados, por ejemplo,
+#   archivos binarios o archivos de configuración específicos de Windows.
+#
+#   Ir normalizando poco a poco, por ejemplo, primero con los archivos de código
+#   fuente y luego con los archivos de configuración...
+#
+#   find src -type f -not -path "./.git/*" -exec dos2unix {} \;
 #   git commit -a -m 'Conversión a dos2unix'
 #
-# 2. Asegúrate de que todos los archivos nuevos se guarden con LF (Unix)
+# 2. Asegúrate de que cada archivo se guarde como debe !!
 #
 #   git add .gitattributes
 #   git commit -m 'agregando .gitattributes para unificar los finales de línea'
 #
-# Cuando existe .gitattributes comprometido, se sobrescribe la configuración
-# que puedas tener con core.autocrlf en .git/config, de modo que nos aseguramos
+# Cuando se hace el commit de .gitattributes se sobrescribe la configuración
+# de `core.autocrlf` en .git/config, de modo que nos aseguramos
 # un comportamiento consistente para todos los usuarios.
 #
 # FYI:
-# Colección conveniente de archivos .gitattributes para los lenguajes de
+# Aquí tienes una colección de archivos .gitattributes para los lenguajes de
 # programación más populares: https://github.com/gitattributes/gitattributes
-
+#
 #################################################################################
 # atributo          # Comportamiento                    Comportamiento
 # atributo          #   CHECKIN                            CHECKOUT
@@ -36,7 +44,9 @@
 # -text o binary    # Sin conversión                   # Sin conversión
 # text=auto         # "text" si es texto o de lo contrario, como "binary"
 # no especificado   # Se usa lo que diga core.autocrlf  en .git/config
+#
 ###############################################################################
+#
 # core.autocrlf     # Presente en tu archivo .git/config
 #   false: igual que binary
 #   true:  igual que eol=crlf      Usado en Windows
@@ -78,37 +88,34 @@
 *.gitattributes text
 .gitignore      text
 
+# Archivos que utilizo para hacer el unit testing, no cambiar nada !!
+*.test     binary
 
 # Docker
 Dockerfile      text
+
 #
-# Enable syntax highlighting for files with `.gitattributes` extensions.
+# Habilitar resaltado de sintaxis para archivos con extensiones `.gitattributes`.
 #
 *.gitattributes linguist-language=gitattributes
 *.gitattributes linguist-detectable=true
 *.gitattributes linguist-documentation=false
 
-## C++
-*.cs     text diff=csharp
-*.java   text diff=java
-*.html   text diff=html
-*.css    text
-*.js     text
-*.sql    text
-
+# Archivos de configuración de Visual Studio
 *.csproj text merge=union
 *.sln    text merge=union eol=crlf
 
+# Archivos de word
 *.docx   diff=astextplain
 *.DOCX   diff=astextplain
 
-# absolute paths are ok, as are globs
-/**/postinst* text eol=lf
+# las rutas absolutas son válidas, al igual que los patrones glob
+# /**/postinst* text eol=lf
 
-# paths that don't start with / are treated relative to the .gitattributes folder
-relative/path/*.txt text eol=lf
+# las rutas que no comienzan con / se tratan relativas a la carpeta .gitattributes
+# relative/path/*.txt text eol=lf
 
-# Sources
+# Fuentes
 *.c     text diff=cpp
 *.cc    text diff=cpp
 *.cxx   text diff=cpp
@@ -119,34 +126,45 @@ relative/path/*.txt text eol=lf
 *.h     text diff=cpp
 *.h++   text diff=cpp
 *.hh    text diff=cpp
+*.cs     text diff=csharp
+*.java   text diff=java
+*.js     text
 
-# Compiled Object files
+# HTML
+*.html   text diff=html
+*.css    text
+*.js     text
+
+# Archivo de bases de datos
+*.sql    text
+
+# Archivos de objetos compilados
 *.slo   binary
 *.lo    binary
 *.o     binary
 *.obj   binary
 
-# Precompiled Headers
+# Encabezados precompilados
 *.gch   binary
 *.pch   binary
 
-# Compiled Dynamic libraries
+# Bibliotecas dinámicas compiladas
 *.so    binary
 *.dylib binary
 *.dll   binary
 
-# Compiled Static libraries
+# Bibliotecas estáticas compiladas
 *.lai   binary
 *.la    binary
 *.a     binary
 *.lib   binary
 
-# Executables
+# Ejecutables
 *.exe   binary
 *.out   binary
 *.app   binary
 
-# Documents
+# Documentos
 *.md       text diff=markdown
 *.mdx      text diff=markdown
 *.tex      text diff=tex
@@ -158,9 +176,9 @@ relative/path/*.txt text eol=lf
 *.tab      text
 *.tsv      text
 *.txt      text
-*.sql      text
 
-# Graphics
+# Gráficos
+*.svg      text eol=lf
 *.png      binary
 *.jpg      binary
 *.jpeg     binary
@@ -168,11 +186,6 @@ relative/path/*.txt text eol=lf
 *.tif      binary
 *.tiff     binary
 *.ico      binary
-# SVG treated as text by default.
-*.svg      text
-# If you want to treat it as binary,
-# use the following line instead.
-# *.svg    binary
 *.eps      binary
 
 # Scripts
@@ -181,22 +194,22 @@ relative/path/*.txt text eol=lf
 *.ksh      text eol=lf
 *.sh       text eol=lf
 *.zsh      text eol=lf
-# These are explicitly windows files and should use crlf
+# Windows
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
 *.ps1      text eol=crlf
 
-# Configuration files
+# Ficheros de configuración
 *.conf     text eol=lf
 
-# Serialisation
-*.json     text
-*.toml     text
-*.xml      text
-*.yaml     text
-*.yml      text
+# Serialización
+*.json     text eol=lf
+*.toml     text eol=lf
+*.xml      text eol=lf
+*.yaml     text eol=lf
+*.yml      text eol=lf
 
-# Archives
+# Archivos
 *.7z       binary
 *.bz       binary
 *.bz2      binary
@@ -218,14 +231,13 @@ relative/path/*.txt text eol=lf
 *.zst      binary
 *.bin      binary
 *.jar      binary
-*.test     binary
 
-# Text files where line endings should be preserved
+# Ficheros de text en los que debo preservar el EOL
 *.patch    -text
 
 # Go
 # ============
-*.go        text diff=golang
+*.go        text diff=golang eol=lf
 
 # Python
 # ============
@@ -237,7 +249,7 @@ relative/path/*.txt text eol=lf
 *.pyz    text diff=python
 *.pyi    text diff=python
 
-# Binary files
+# Binarios
 # ============
 *.db     binary
 *.p      binary
@@ -250,20 +262,16 @@ relative/path/*.txt text eol=lf
 # Jupyter notebook
 *.ipynb  text eol=lf
 
-# diff behavior for common document formats
-# Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the
-# entries below.
+# Documentos comunes
 *.bibtex   text diff=bibtex
-*.doc      diff=astextplain
-*.DOC      diff=astextplain
-*.docx     diff=astextplain
-*.DOCX     diff=astextplain
-*.dot      diff=astextplain
-*.DOT      diff=astextplain
-*.pdf      diff=astextplain
-*.PDF      diff=astextplain
-*.rtf      diff=astextplain
-*.RTF      diff=astextplain
-*.epub     diff=astextplain
-
+*.doc      binary
+*.DOC      binary
+*.docx     binary
+*.DOCX     binary
+*.dot      binary
+*.DOT      binary
+*.pdf      binary
+*.PDF      binary
+*.rtf      binary
+*.RTF      binary
+*.epub     binary
