@@ -7,17 +7,17 @@ namespace fs = std::filesystem;
 int main(int argc, char* argv[]) {
   std::cout << "git-repo-eol-analyzer (Compiled w/ CLANG-17 - ";
 #if __cplusplus == 199711L
-  std::cout << "C++98 standard)" << std::endl;
+  std::cout << "standard C++98)" << std::endl;
 #elif __cplusplus == 201103L
-  std::cout << "C++11 standard)" << std::endl;
+  std::cout << "standard C++11)" << std::endl;
 #elif __cplusplus == 201402L
-  std::cout << "C++14 standard)" << std::endl;
+  std::cout << "standard C++14)" << std::endl;
 #elif __cplusplus == 201703L
-  std::cout << "C++17 standard)" << std::endl;
+  std::cout << "standard C++17)" << std::endl;
 #elif __cplusplus == 202002L
-  std::cout << "C++20 standard)" << std::endl;
+  std::cout << "standard C++20)" << std::endl;
 #else
-  std::cout << "Unknown C++ standard)" << std::endl;
+  std::cout << "(standard de C++ desconocido)" << std::endl;
 #endif
 
   try {
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     recorrer_directorios(current_dir, reglas, directorios_excluir, current_dir,
                          first_directory);
 
-    std::cout << "\n\nNumber of files with:\n";
+    std::cout << "\n\Número de ficheros con:\n";
     std::cout << "Only LF        : " << eolCount.onlyLF << "\n";
     std::cout << "Only CRLF      : " << eolCount.onlyCRLF << "\n";
     std::cout << "Only CR        : " << eolCount.onlyCR << "\n";
