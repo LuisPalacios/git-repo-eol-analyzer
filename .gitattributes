@@ -104,6 +104,7 @@ Dockerfile      text
 # Archivos de configuración de Visual Studio
 *.csproj text merge=union
 *.sln    text merge=union eol=crlf
+*.SLN    text merge=union eol=crlf
 
 # Archivos de word
 *.docx   diff=astextplain
@@ -165,17 +166,16 @@ Dockerfile      text
 *.app   binary
 
 # Documentos
-*.md       text diff=markdown
-*.mdx      text diff=markdown
-*.tex      text diff=tex
-*.adoc     text
-*.textile  text
-*.mustache text
-*.csv      text
-*.CSV      text eol=crlf
-*.tab      text
-*.tsv      text
-*.txt      text
+*.md       text diff=markdown eol=lf
+*.mdx      text diff=markdown eol=lf
+*.tex      text diff=tex eol=lf
+*.adoc     text eol=lf
+*.textile  text eol=lf
+*.mustache text eol=lf
+*.csv      text eol=lf
+*.tab      text eol=lf
+*.tsv      text eol=lf
+*.txt      text eol=lf
 
 # Gráficos
 *.svg      text eol=lf
@@ -198,6 +198,9 @@ Dockerfile      text
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
 *.ps1      text eol=crlf
+*.BAT      text eol=crlf
+*.CMD      text eol=crlf
+*.PS1      text eol=crlf
 
 # Ficheros de configuración
 *.conf     text eol=lf
