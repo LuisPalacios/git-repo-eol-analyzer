@@ -1,6 +1,6 @@
 # Introducción
 
-Este repositorio empezó como un ejercicio para crear un proyecto C++ multiplataforma, que puediese **clonar, compilar y ejecutar en Windows, MacOS y Linux**. Fui avanzando y he terminado con un proyecto que utiliza:
+Este  repositorio empezó como un ejercicio para crear un proyecto C++ multiplataforma, que puediese **clonar, compilar y ejecutar en Windows, MacOS y Linux**. Fui avanzando y he terminado con un proyecto que utiliza:
 
 - El compilador **Clang versión 17 con estándar C++20**
 - Herramienta para hacer el Build: **CMake** y **Ninja**
