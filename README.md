@@ -52,7 +52,6 @@ Directory: ./test_files:
  test_only_LF.test:                                         LF
 ```
 
-
 ## Preparar el Entorno
 
 ### Requisitos Previos
@@ -155,16 +154,25 @@ git-repo-eol-analyzer/
 └── README.md
 ```
 
-Configuración con CMake (Línea de Comandos)
+### PASO 1: Configuración con CMake
 
 - Linux/MacOS: `cmake -S . -B build -G Ninja`
 - Windows: `cmake -S . -B build -G Ninja -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang.exe" -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang++.exe"`
+
+### PASO 2: Compilación
 
 Compilación con CMake (Línea de Comandos). Una vez que el proyecto ha sido configurado correctamente,
 
 - Linux/MacOS/Windows: `cmake --build build`
 
-Configuración y Compilación con VSCode
+### Paso 3: Ejecución
+
+- Windows: `.\build\git-repo-eol-analyzer.exe`
+- MacOS o Linux: `./build/git-repo-eol-analyzer`
+
+### Pasos 1,2,3: Alternativa con VSCode
+
+Aquí lo hacemos todo desde VSCode, configurar CMake y Compilar
 
 - Abro VSCode > "CMake: Configure" (dentro del comando VSCode (Ctrl/Cmd + Shift + P)).
 - Selecciono `Clang` como compilador y me aseguro de que `Ninja` esta seleccionado como Generador preferido
@@ -172,17 +180,16 @@ Configuración y Compilación con VSCode
 - Alternativamente puedes entrar en commando > Tasks: Run Tasks y seleccionar la que te interese.
 - Tambien puedes pulsar `Ctrl|Cd + Shift + B` para que haga el build.
 
-Ejecución
-
-- Windows: `.\build\git-repo-eol-analyzer.exe`
-- MacOS o Linux: `./build/git-repo-eol-analyzer`
-
-### Instalación de los ejecutables
+### Paso 4: Instalación de los ejecutables
 
 Se pueden instalar los ejecuables en un directorio del sistema, en este caso copia `git-repo-eol-analyzer` (o `git-repo-eol-analyzer.exe` en Windows)  a `/usr/local/bin` (o `c:\user\local\bin`).
 
 - Linux/MacOS: `sudo cmake --install build`
 - Windows: `cmake --install build`
+
+### Paso 5: Ejecución
+
+Prueba a ejecutar: `git-repo-eol-analyzer` o `git-repo-eol-analyzer.exe`
 
 ## Unit Tests
 
