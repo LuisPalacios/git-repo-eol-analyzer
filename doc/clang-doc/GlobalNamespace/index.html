@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<title>Global Namespace</title>
+<link rel="stylesheet" href="../clang-doc-default-stylesheet.css"/>
+<script src="../index.js"></script>
+<script src="../index_json.js"></script>
+<header id="project-title"></header>
+<main>
+  <div id="sidebar-left" path="GlobalNamespace" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left"></div>
+  <div id="main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+    <h1>Global Namespace</h1>
+    <h2 id="Records">Records</h2>
+    <ul>
+      <li>
+        <a href="EOLTypes.html">EOLTypes</a>
+      </li>
+      <li>
+        <a href="EOLCount.html">EOLCount</a>
+      </li>
+    </ul>
+    <h2 id="Functions">Functions</h2>
+    <div>
+      <h3 id="A42887D786847A1E840CE0C122CAF1029BCA00CB">analizar_eol</h3>
+      <p>
+        <a href="EOLTypes.html">EOLTypes</a>
+         analizar_eol(const std::string &amp; file_path)
+      </p>
+      <p>Defined at line 12 of file src\eol_analyzer.cpp</p>
+      <div>
+        <div>
+          <p> Función que analiza el tipo de EOL en un archivo std::vector&lt;std::string&gt; analizar_eol(const std::string&amp; file_path) {</p>
+        </div>
+      </div>
+      <h3 id="92D408223D7D0F4F9ED23CDBE38E2460F4021E22">es_archivo_de_texto</h3>
+      <p>_Bool es_archivo_de_texto(const std::string &amp; file_path)</p>
+      <p>Defined at line 90 of file src\eol_analyzer.cpp</p>
+      <div>
+        <div>
+          <p> Función para determinar si un archivo es de texto (no binario)</p>
+        </div>
+      </div>
+      <h3 id="5EE23E0B7D003B4E871B710E17B9FD52E35C7541">cargar_gitignore</h3>
+      <p>
+        <a href="../std/vector.html">vector</a>
+         cargar_gitignore(const std::filesystem::path &amp; dir_path)
+      </p>
+      <p>Defined at line 101 of file src\eol_analyzer.cpp</p>
+      <div>
+        <div>
+          <p> Cargar las reglas desde un archivo .gitignore</p>
+        </div>
+      </div>
+      <h3 id="BDBB464DA729C61F2829957812102D8129844211">ignorar_archivo_o_directorio</h3>
+      <p>_Bool ignorar_archivo_o_directorio(const std::filesystem::path &amp; path, const std::vector&lt;std::string&gt; &amp; reglas)</p>
+      <p>Defined at line 122 of file src\eol_analyzer.cpp</p>
+      <div>
+        <div>
+          <p> Función para verificar si una ruta coincide con alguna regla de .gitignore</p>
+        </div>
+      </div>
+      <h3 id="85F169C542B6F359B2A1B054BD3831D97181494F">formatear_ruta</h3>
+      <p>
+        <a href="../std/basic_string.html">basic_string</a>
+         formatear_ruta(const fs::path &amp; dir_path, const fs::path &amp; base_dir)
+      </p>
+      <p>Defined at line 151 of file src\eol_analyzer.cpp</p>
+      <div>
+        <div>
+          <p> Función para formatear la ruta para que empiece con &quot;./&quot;</p>
+        </div>
+      </div>
+      <h3 id="3BA40012FC5555AA4041FB52BA6432E3E4EBDF44">recorrer_directorios</h3>
+      <p>void recorrer_directorios(const fs::path &amp; dir_path, const std::vector&lt;std::string&gt; &amp; reglas, const std::set&lt;std::string&gt; &amp; directorios_excluir, const fs::path &amp; base_dir, _Bool &amp; first_directory)</p>
+      <p>Defined at line 156 of file src\eol_analyzer.cpp</p>
+      <div>
+        <div>
+          <p> Función para recorrer directorios de forma ordenada</p>
+        </div>
+      </div>
+      <h3 id="88CF29B5482895C195AF7EA48AC11454C17588FB">main</h3>
+      <p>int main(int argc, char *[] argv)</p>
+      <p>Defined at line 7 of file src\main.cpp</p>
+    </div>
+  </div>
+  <div id="sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li>
+        <span>
+          <a href="#Records">Records</a>
+        </span>
+      </li>
+      <li>
+        <span>
+          <a href="#Functions">Functions</a>
+        </span>
+        <ul>
+          <li>
+            <span>
+              <a href="#A42887D786847A1E840CE0C122CAF1029BCA00CB">analizar_eol</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href="#92D408223D7D0F4F9ED23CDBE38E2460F4021E22">es_archivo_de_texto</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href="#5EE23E0B7D003B4E871B710E17B9FD52E35C7541">cargar_gitignore</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href="#BDBB464DA729C61F2829957812102D8129844211">ignorar_archivo_o_directorio</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href="#85F169C542B6F359B2A1B054BD3831D97181494F">formatear_ruta</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href="#3BA40012FC5555AA4041FB52BA6432E3E4EBDF44">recorrer_directorios</a>
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href="#88CF29B5482895C195AF7EA48AC11454C17588FB">main</a>
+            </span>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</main>
+<footer>
+  <span class="no-break">clang-doc version 17.0.1</span>
+</footer>
